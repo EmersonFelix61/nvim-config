@@ -17,6 +17,11 @@ return{ -- Fuzzy Finder (files, lsp, etc)
 		{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
 	},
 	config = function()
+		local local_bin = vim.fn.expand("$HOME/.local/bin")
+		if not vim.env.PATH:find(local_bin, 1, true) then
+			vim.env.PATH = local_bin .. ":" .. vim.env.PATH
+		end
+
 		--  :Telescope help_tags
 		--  - Insert mode: <c-/>
 		--  - Normal mode: ?
@@ -41,12 +46,31 @@ return{ -- Fuzzy Finder (files, lsp, etc)
 		pcall(require("telescope").load_extension, "ui-select")
 		-- See `:help telescope.builtin`
 		local builtin = require("telescope.builtin")
+		local has_rg = function()
+			if vim.fn.executable("rg") == 1 then
+				return true
+			end
+
+			vim.notify("Telescope grep requires ripgrep (`rg`) in PATH", vim.log.levels.ERROR)
+			return false
+		end
+
 		vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 		vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
 		vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
-		vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-		vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
+		vim.keymap.set("n", "<leader>sw", function()
+			if not has_rg() then
+				return
+			end
+			builtin.grep_string()
+		end, { desc = "[S]earch current [W]ord" })
+		vim.keymap.set("n", "<leader>sg", function()
+			if not has_rg() then
+				return
+			end
+			builtin.live_grep()
+		end, { desc = "[S]earch by [G]rep" })
 		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
 		vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
 		vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
@@ -63,6 +87,9 @@ return{ -- Fuzzy Finder (files, lsp, etc)
 		-- It's also possible to pass additional configuration options.
 		--  See `:help telescope.builtin.live_grep()` for information about particular keys
 		vim.keymap.set("n", "<leader>s/", function()
+			if not has_rg() then
+				return
+			end
 			builtin.live_grep({
 				grep_open_files = true,
 				prompt_title = "Live Grep in Open Files",

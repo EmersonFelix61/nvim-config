@@ -45,6 +45,9 @@ vim.opt.scrolloff = 10
 -- Clear highlights
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
+-- Easier escape from insert/visual mode
+vim.keymap.set({ "i", "v", "s" }, "jk", "<Esc>", { desc = "Exit to normal mode" })
+
 -- Exit terminal mode (Normal Neovim Terminal)
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
@@ -67,9 +70,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- [Spectre]
 vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").toggle()<CR>', { desc = "Toggle Spectre" })
-vim.keymap.set('n', '<leader>sw', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Search current word" })
-vim.keymap.set('v', '<leader>sw', '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Search current word" })
-vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', { desc = "Search on current file" })
+vim.keymap.set('n', '<leader>sW', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', { desc = "Spectre: Search current word" })
+vim.keymap.set('v', '<leader>sW', '<esc><cmd>lua require("spectre").open_visual()<CR>', { desc = "Spectre: Search selection" })
+vim.keymap.set('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', { desc = "Spectre: Search on current file" })
 
 -- [ LSP & Diagnostics ]
 vim.keymap.set('n', '<leader>lt', ':lua vim.diagnostic.config({virtual_text=true})<CR>', { noremap = true, silent = true, desc = "LSP: Show Virtual Text" })
@@ -77,12 +80,10 @@ vim.keymap.set('n', '<leader>lf', ':lua vim.diagnostic.config({virtual_text=fals
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- [CopilotChat]
-vim.g.copilot_no_tab_map = true
 vim.keymap.set('n', '<leader>cp', ':CopilotChatOpen<CR>', { noremap = true, silent = true, desc = "Toggle [C]o[P]ilot Chat" })
-vim.keymap.set('i', '<S-Tab>', 'copilot#Accept("\\<S-Tab>")', { expr = true, replace_keycodes = false })
 
--- [NvimTree]
-vim.keymap.set('n', '<leader>c', ':NvimTreeToggle<CR>', { noremap = true, silent = true, desc = "Toggle NvimTree" })
+-- [Neo-tree]
+vim.keymap.set('n', '<leader>c', '<cmd>Neotree toggle reveal<CR>', { noremap = true, silent = true, desc = "Toggle Neo-tree" })
 
 -- [ToggleTerm]
 vim.keymap.set('n', '<leader>tt', '<cmd>ToggleTerm<CR>', { noremap = true, silent = true, desc = "Toggle Terminal" })
