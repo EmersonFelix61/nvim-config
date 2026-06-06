@@ -6,7 +6,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 --  NOTE: set true if a Nerd Font is installed
-vim.g.have_nerd_font = true 
+vim.g.have_nerd_font = true
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -32,6 +32,8 @@ require('lazy').setup({
   { import = 'plugins.utils.todo-comments' },
   { import = 'plugins.utils.which-key' },
   { import = 'plugins.utils.spectre' },
+  { import = 'plugins.utils.diffview' },
+  { import = 'plugins.utils.neogit' },
 
   --	42 School Related Plugins:
   { import = 'plugins.42.42-norminette' },
@@ -42,19 +44,19 @@ require('lazy').setup({
   { import = 'plugins.themes.switcheroo' },
   { import = 'plugins.themes.themery' },
   { import = 'plugins.themes.theme-stash' },
-  
+
   -- Novos Temas (Adicione os arquivos correspondentes na pasta plugins/themes/)
-  { "rebelot/kanagawa.nvim" },
-  { "Yazeed1s/oh-lucy.nvim" },
-  { "scottmckendry/cyberdream.nvim" },
-  { "cpea2506/one_monokai.nvim" },
-  { "catppuccin/nvim", name = "catppuccin" },
-  { "rose-pine/neovim", name = "rose-pine" },
-  { "folke/tokyonight.nvim" },
-  { "maxmx03/fluoromachine.nvim" },
+  { 'rebelot/kanagawa.nvim' },
+  { 'Yazeed1s/oh-lucy.nvim' },
+  { 'scottmckendry/cyberdream.nvim' },
+  { 'cpea2506/one_monokai.nvim' },
+  { 'catppuccin/nvim', name = 'catppuccin' },
+  { 'rose-pine/neovim', name = 'rose-pine' },
+  { 'folke/tokyonight.nvim' },
+  { 'maxmx03/fluoromachine.nvim' },
 
   --	Viadagens:
-  {import = 'plugins.fun'},
+  { import = 'plugins.fun' },
 
   --	Dashboard Plugins:
   { import = 'plugins.dashboard.snacks' },
@@ -63,8 +65,8 @@ require('lazy').setup({
   --	LSP Related Plugins:
   { import = 'plugins.LSP.lazydev' },
   { import = 'plugins.LSP.nvim-lspconfig' },
-  { import = "plugins.LSP.nvim-cmp_autocompletion" },
-  { import = "plugins.LSP.conform_autoformat" },
+  { import = 'plugins.LSP.nvim-cmp_autocompletion' },
+  { import = 'plugins.LSP.conform_autoformat' },
 
   --	AI Related Plugins:
   { import = 'plugins.AI.copilot' },
