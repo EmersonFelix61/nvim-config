@@ -1,3 +1,5 @@
+local i18n = require "config.i18n"
+
 return{ -- Fuzzy Finder (files, lsp, etc)
 	"nvim-telescope/telescope.nvim",
 	event = "VimEnter",
@@ -51,30 +53,30 @@ return{ -- Fuzzy Finder (files, lsp, etc)
 				return true
 			end
 
-			vim.notify("Telescope grep requires ripgrep (`rg`) in PATH", vim.log.levels.ERROR)
+			vim.notify(i18n.t("notify.telescope_rg_missing"), vim.log.levels.ERROR)
 			return false
 		end
 
-		vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
-		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-		vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
-		vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
+		vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = i18n.t("telescope.help") })
+		vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = i18n.t("telescope.keymaps") })
+		vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = i18n.t("telescope.files") })
+		vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = i18n.t("telescope.select") })
 		vim.keymap.set("n", "<leader>sw", function()
 			if not has_rg() then
 				return
 			end
 			builtin.grep_string()
-		end, { desc = "[S]earch current [W]ord" })
+		end, { desc = i18n.t("telescope.word") })
 		vim.keymap.set("n", "<leader>sg", function()
 			if not has_rg() then
 				return
 			end
 			builtin.live_grep()
-		end, { desc = "[S]earch by [G]rep" })
-		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-		vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-		vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-		vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+		end, { desc = i18n.t("telescope.grep") })
+		vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = i18n.t("telescope.diagnostics") })
+		vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = i18n.t("telescope.resume") })
+		vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = i18n.t("telescope.oldfiles") })
+		vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = i18n.t("telescope.buffers") })
 
 		-- Slightly advanced example of overriding default behavior and theme
 		vim.keymap.set("n", "<leader>/", function()
@@ -83,7 +85,7 @@ return{ -- Fuzzy Finder (files, lsp, etc)
 				winblend = 10,
 				previewer = false,
 			}))
-		end, { desc = "[/] Fuzzily search in current buffer" })
+		end, { desc = i18n.t("telescope.current_buffer") })
 		-- It's also possible to pass additional configuration options.
 		--  See `:help telescope.builtin.live_grep()` for information about particular keys
 		vim.keymap.set("n", "<leader>s/", function()
@@ -92,12 +94,12 @@ return{ -- Fuzzy Finder (files, lsp, etc)
 			end
 			builtin.live_grep({
 				grep_open_files = true,
-				prompt_title = "Live Grep in Open Files",
+				prompt_title = i18n.t("telescope.open_files_title"),
 			})
-		end, { desc = "[S]earch [/] in Open Files" })
+		end, { desc = i18n.t("telescope.open_files") })
 		-- Shortcut for searching your Neovim configuration files
 		vim.keymap.set("n", "<leader>sn", function()
 			builtin.find_files({ cwd = vim.fn.stdpath("config") })
-		end, { desc = "[S]earch [N]eovim files" })
+		end, { desc = i18n.t("telescope.neovim_files") })
 	end,
 }

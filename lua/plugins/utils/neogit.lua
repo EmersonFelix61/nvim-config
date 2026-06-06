@@ -1,3 +1,5 @@
+local i18n = require 'config.i18n'
+
 return {
   'NeogitOrg/neogit',
   cmd = 'Neogit',
@@ -13,6 +15,6 @@ return {
     },
   },
   keys = {
-    { '<leader>gg', '<cmd>Neogit<CR>', desc = 'Git: abrir Neogit' },
+    { '<leader>gg', '<cmd>Neogit<CR>', desc = i18n.t 'git.open_neogit' },
   },
 }

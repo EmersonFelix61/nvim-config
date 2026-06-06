@@ -12,6 +12,7 @@ return {
       untracked = { text = '┆' },
     },
     on_attach = function(bufnr)
+      local i18n = require 'config.i18n'
       local gs = package.loaded.gitsigns
 
       local function map(mode, lhs, rhs, desc)
@@ -23,24 +24,24 @@ return {
 
       map('n', ']h', function()
         gs.nav_hunk 'next'
-      end, 'Git: próximo hunk')
+      end, i18n.t 'git.next_hunk')
 
       map('n', '[h', function()
         gs.nav_hunk 'prev'
-      end, 'Git: hunk anterior')
+      end, i18n.t 'git.prev_hunk')
 
-      map('n', '<leader>gp', gs.preview_hunk, 'Git: preview hunk')
-      map('n', '<leader>gs', gs.stage_hunk, 'Git: stage hunk')
-      map('n', '<leader>gr', gs.reset_hunk, 'Git: reset hunk')
+      map('n', '<leader>gp', gs.preview_hunk, i18n.t 'git.preview_hunk')
+      map('n', '<leader>gs', gs.stage_hunk, i18n.t 'git.stage_hunk')
+      map('n', '<leader>gr', gs.reset_hunk, i18n.t 'git.reset_hunk')
       map('n', '<leader>gb', function()
         gs.blame_line { full = true }
-      end, 'Git: blame da linha')
+      end, i18n.t 'git.blame_line')
 
-      map('n', '<leader>gB', gs.toggle_current_line_blame, 'Git: toggle blame inline')
-      map('n', '<leader>gw', gs.toggle_word_diff, 'Git: toggle word diff')
+      map('n', '<leader>gB', gs.toggle_current_line_blame, i18n.t 'git.inline_blame')
+      map('n', '<leader>gw', gs.toggle_word_diff, i18n.t 'git.word_diff')
       map('n', '<leader>gq', function()
         gs.setqflist 'all'
-      end, 'Git: listar hunks')
+      end, i18n.t 'git.list_hunks')
     end,
   },
 }

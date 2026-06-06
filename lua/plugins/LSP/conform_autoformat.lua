@@ -1,3 +1,5 @@
+local i18n = require "config.i18n"
+
 return{ -- Autoformat
 	"stevearc/conform.nvim",
 	event = { "BufWritePre" },
@@ -9,7 +11,7 @@ return{ -- Autoformat
 				require("conform").format({ async = true, lsp_format = "fallback" })
 			end,
 			mode = "",
-			desc = "[F]ormat buffer",
+			desc = i18n.t("common.format_buffer"),
 		},
 	},
 	opts = {

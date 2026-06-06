@@ -1,3 +1,5 @@
+local i18n = require "config.i18n"
+
 return {
 	"romgrk/barbar.nvim",
 	version = "^1.0.0",
@@ -39,28 +41,28 @@ return {
 	},
 	keys = {
 		-- Navegar entre buffers
-		{ "<Tab>", "<cmd>BufferNext<CR>", desc = "Próximo buffer" },
-		{ "<S-Tab>", "<cmd>BufferPrevious<CR>", desc = "Buffer anterior" },
+		{ "<Tab>", "<cmd>BufferNext<CR>", desc = i18n.t("map.buffer_next") },
+		{ "<S-Tab>", "<cmd>BufferPrevious<CR>", desc = i18n.t("map.buffer_previous") },
 
 		-- Mover buffer de posição
-		{ "<leader>b.", "<cmd>BufferMoveNext<CR>", desc = "Mover buffer para direita" },
-		{ "<leader>b,", "<cmd>BufferMovePrevious<CR>", desc = "Mover buffer para esquerda" },
+		{ "<leader>b.", "<cmd>BufferMoveNext<CR>", desc = i18n.t("map.buffer_move_right") },
+		{ "<leader>b,", "<cmd>BufferMovePrevious<CR>", desc = i18n.t("map.buffer_move_left") },
 
 		-- Fechar buffers
-		{ "<leader>bd", "<cmd>BufferClose<CR>", desc = "Fechar buffer atual" },
-		{ "<leader>bo", "<cmd>BufferCloseAllButCurrent<CR>", desc = "Fechar outros buffers" },
-		{ "<leader>br", "<cmd>BufferCloseBuffersRight<CR>", desc = "Fechar buffers à direita" },
-		{ "<leader>bl", "<cmd>BufferCloseBuffersLeft<CR>", desc = "Fechar buffers à esquerda" },
+		{ "<leader>bd", "<cmd>BufferClose<CR>", desc = i18n.t("map.buffer_close") },
+		{ "<leader>bo", "<cmd>BufferCloseAllButCurrent<CR>", desc = i18n.t("map.buffer_close_others") },
+		{ "<leader>br", "<cmd>BufferCloseBuffersRight<CR>", desc = i18n.t("map.buffer_close_right") },
+		{ "<leader>bl", "<cmd>BufferCloseBuffersLeft<CR>", desc = i18n.t("map.buffer_close_left") },
 
 		-- Escolher buffer visualmente
-		{ "<leader>bp", "<cmd>BufferPick<CR>", desc = "Escolher buffer" },
-		{ "<leader>bc", "<cmd>BufferPickDelete<CR>", desc = "Escolher buffer para fechar" },
+		{ "<leader>bp", "<cmd>BufferPick<CR>", desc = i18n.t("map.buffer_pick") },
+		{ "<leader>bc", "<cmd>BufferPickDelete<CR>", desc = i18n.t("map.buffer_close_picker") },
 
 		-- Fixar buffer
-		{ "<leader>bP", "<cmd>BufferPin<CR>", desc = "Fixar/desfixar buffer" },
+		{ "<leader>bP", "<cmd>BufferPin<CR>", desc = i18n.t("map.buffer_pin") },
 
 		-- Ordenar buffers
-		{ "<leader>bs", "<cmd>BufferOrderByDirectory<CR>", desc = "Ordenar buffers por diretório" },
-		{ "<leader>be", "<cmd>BufferOrderByExtension<CR>", desc = "Ordenar buffers por extensão" },
+		{ "<leader>bs", "<cmd>BufferOrderByDirectory<CR>", desc = i18n.t("map.buffer_order_directory") },
+		{ "<leader>be", "<cmd>BufferOrderByExtension<CR>", desc = i18n.t("map.buffer_order_extension") },
 	},
 }

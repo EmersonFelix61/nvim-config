@@ -1,3 +1,5 @@
+local i18n = require 'config.i18n'
+
 return {
   'sindrets/diffview.nvim',
   cmd = {
@@ -8,9 +10,9 @@ return {
     'nvim-lua/plenary.nvim',
   },
   keys = {
-    { '<leader>gd', '<cmd>DiffviewOpen<CR>', desc = 'Git: abrir diff do projeto' },
-    { '<leader>gD', '<cmd>DiffviewClose<CR>', desc = 'Git: fechar diff' },
-    { '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', desc = 'Git: histórico do arquivo' },
-    { '<leader>gH', '<cmd>DiffviewFileHistory<CR>', desc = 'Git: histórico do projeto' },
+    { '<leader>gd', '<cmd>DiffviewOpen<CR>', desc = i18n.t 'git.open_diff' },
+    { '<leader>gD', '<cmd>DiffviewClose<CR>', desc = i18n.t 'git.close_diff' },
+    { '<leader>gh', '<cmd>DiffviewFileHistory %<CR>', desc = i18n.t 'git.file_history' },
+    { '<leader>gH', '<cmd>DiffviewFileHistory<CR>', desc = i18n.t 'git.project_history' },
   },
 }
