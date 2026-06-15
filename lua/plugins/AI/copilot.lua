@@ -2,6 +2,14 @@ return {
   "zbirenbaum/copilot.lua",
   cmd = "Copilot",
   event = "InsertEnter",
+  cond = function()
+    local output = vim.fn.system({ "node", "--version" })
+    if vim.v.shell_error ~= 0 then
+      return false
+    end
+
+    return (tonumber(output:match("^v(%d+)")) or 0) >= 22
+  end,
   config = function()
     require("copilot").setup({
       panel = {

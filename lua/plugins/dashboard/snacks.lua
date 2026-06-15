@@ -1,5 +1,6 @@
 return {
   "folke/snacks.nvim",
+  priority = 1000,
   opts = {
     dashboard = {
       sections = {
@@ -7,6 +8,6 @@ return {
         { section = "keys", gap = 1, padding = 1 },
         { section = "startup" },
       },
-    }
-  }
+    },
+  },
 }

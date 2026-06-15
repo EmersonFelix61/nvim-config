@@ -107,15 +107,15 @@ vim.keymap.set('t', '<C-t><C-t>', [[<C-\><C-n>:ToggleTerm<CR>]], { noremap = tru
 
 -- [Which-key]
 vim.keymap.set('n', '<leader>k', function()
-  require('which-key').show(vim.g.mapleader, { mode = 'n' })
+  require('which-key').show { keys = vim.g.mapleader, mode = 'n' }
 end, { desc = i18n.t 'map.which_key_leader' })
 
 vim.keymap.set('n', '<leader>gk', function()
-  require('which-key').show 'g'
+  require('which-key').show { keys = 'g', mode = 'n' }
 end, { desc = i18n.t 'map.which_key_g' })
 
 vim.keymap.set('n', '<leader>gz', function()
-  require('which-key').show 'z'
+  require('which-key').show { keys = 'z', mode = 'n' }
 end, { desc = i18n.t 'map.which_key_z' })
 
 vim.keymap.set('n', '<leader>li', '<cmd>Idioma toggle<CR>', { desc = i18n.t 'lang.toggle' })
