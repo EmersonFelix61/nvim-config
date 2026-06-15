@@ -22,8 +22,8 @@ local check_version = function()
 end
 
 local check_external_reqs = function()
-  -- Basic utils: `git`, `make`, `unzip`
-  for _, exe in ipairs { 'git', 'make', 'unzip', 'rg' } do
+  -- Basic utils and language toolchains used by this config.
+  for _, exe in ipairs { 'git', 'make', 'unzip', 'rg', 'cc', 'python3' } do
     local is_executable = vim.fn.executable(exe) == 1
     if is_executable then
       vim.health.ok(string.format(i18n.t 'health.executable_found', exe))
@@ -42,7 +42,7 @@ return {
     vim.health.info(i18n.t 'health.info')
 
     local uv = vim.uv or vim.loop
-    vim.health.info(i18n.t('health.system_info') .. vim.inspect(uv.os_uname()))
+    vim.health.info(i18n.t 'health.system_info' .. vim.inspect(uv.os_uname()))
 
     check_version()
     check_external_reqs()

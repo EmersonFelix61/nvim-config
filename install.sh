@@ -3,7 +3,7 @@
 set -e
 
 echo "kickoff42.nvim installer for 42School and similar environments"
-echo "This script will install Neovim, ripgrep, and fd-find locally in ~/.local"
+echo "This script will install Neovim, ripgrep, fd-find, and a Nerd Font locally in ~/.local"
 echo "No sudo or package manager required."
 echo
 
@@ -15,7 +15,7 @@ for cmd in curl tar; do
   fi
 done
 
-mkdir -p "$HOME/.local/bin" "$HOME/.local/share" "$HOME/.local/lib"
+mkdir -p "$HOME/.local/bin" "$HOME/.local/share" "$HOME/.local/lib" "$HOME/.local/share/fonts"
 
 # Function to prompt user to install packages
 confirm_install() {
@@ -55,10 +55,10 @@ if ! grep -q 'export PATH="\$HOME/.local/bin:\$PATH"' "$shellrc" 2>/dev/null; th
   fi
 fi
 
-if [ $shellrc = "$HOME/.zshrc" ]; then
-	shellrc="$HOME/.bashrc"
-elif [ $shellrc == "$HOME/.bashrc" ]; then
-	shellrc="$HOME/.zshrc"
+if [ "$shellrc" = "$HOME/.zshrc" ]; then
+  shellrc="$HOME/.bashrc"
+elif [ "$shellrc" = "$HOME/.bashrc" ]; then
+  shellrc="$HOME/.zshrc"
 fi
 
 if ! grep -q 'export PATH="\$HOME/.local/bin:\$PATH"' "$shellrc" 2>/dev/null; then
@@ -118,7 +118,30 @@ else
   echo "Skipping Neovim installation."
 fi
 
+# Install Nerd Font for icons
+if confirm_install "JetBrainsMono Nerd Font"; then
+  echo "Installing JetBrainsMono Nerd Font..."
+  FONT_DIR="$HOME/.local/share/fonts/JetBrainsMonoNerdFont"
+  FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz"
+  mkdir -p "$FONT_DIR"
+  curl -L -o JetBrainsMonoNerdFont.tar.xz --progress-bar "$FONT_URL"
+  tar -xJf JetBrainsMonoNerdFont.tar.xz -C "$FONT_DIR"
+  rm -f JetBrainsMonoNerdFont.tar.xz
+
+  if command -v fc-cache >/dev/null 2>&1; then
+    fc-cache -f "$HOME/.local/share/fonts"
+    echo "Font cache updated."
+  else
+    echo "Warning: fc-cache not found. The font was installed, but you may need to refresh your font cache manually."
+  fi
+
+  echo "Set your terminal font to 'JetBrainsMono Nerd Font' for icons to render correctly."
+else
+  echo "Skipping JetBrainsMono Nerd Font installation."
+fi
+
 echo
 echo "Installation complete!"
 echo "Please restart your terminal or source your shell profile to update PATH."
+echo "If you installed the Nerd Font, select 'JetBrainsMono Nerd Font' in your terminal settings."
 echo "Run 'nvim' to start Neovim."
