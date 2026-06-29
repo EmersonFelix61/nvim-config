@@ -53,9 +53,7 @@ require('lazy').setup({
   { 'Yazeed1s/oh-lucy.nvim' },
   { 'scottmckendry/cyberdream.nvim' },
   { 'cpea2506/one_monokai.nvim' },
-  { 'catppuccin/nvim', name = 'catppuccin' },
   { 'rose-pine/neovim', name = 'rose-pine' },
-  { 'folke/tokyonight.nvim' },
   { 'maxmx03/fluoromachine.nvim' },
 
   --	Viadagens:
@@ -71,9 +69,8 @@ require('lazy').setup({
   { import = 'plugins.LSP.nvim-cmp_autocompletion' },
   { import = 'plugins.LSP.conform_autoformat' },
 
-  --	AI Related Plugins:
-  { import = 'plugins.AI.copilot' },
-  { import = 'plugins.AI.copilotChat' },
+  -- Debugging:
+  { import = 'plugins.debug.nvim-dap' },
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {

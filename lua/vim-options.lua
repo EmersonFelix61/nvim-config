@@ -90,12 +90,19 @@ end, {
   silent = true,
   desc = i18n.t 'diagnostics.full_error',
 })
-vim.keymap.set('n', '<leader>lt', ':lua vim.diagnostic.config({virtual_text=true})<CR>', { noremap = true, silent = true, desc = i18n.t 'diagnostics.show_virtual_text' })
-vim.keymap.set('n', '<leader>lf', ':lua vim.diagnostic.config({virtual_text=false})<CR>', { noremap = true, silent = true, desc = i18n.t 'diagnostics.hide_virtual_text' })
+vim.keymap.set(
+  'n',
+  '<leader>lt',
+  ':lua vim.diagnostic.config({virtual_text=true})<CR>',
+  { noremap = true, silent = true, desc = i18n.t 'diagnostics.show_virtual_text' }
+)
+vim.keymap.set(
+  'n',
+  '<leader>lf',
+  ':lua vim.diagnostic.config({virtual_text=false})<CR>',
+  { noremap = true, silent = true, desc = i18n.t 'diagnostics.hide_virtual_text' }
+)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = i18n.t 'diagnostics.quickfix' })
-
--- [CopilotChat]
-vim.keymap.set('n', '<leader>cp', ':CopilotChatOpen<CR>', { noremap = true, silent = true, desc = i18n.t 'map.copilot_chat' })
 
 -- [Neo-tree]
 vim.keymap.set('n', '<leader>c', '<cmd>Neotree toggle reveal<CR>', { noremap = true, silent = true, desc = i18n.t 'map.neotree_toggle' })

@@ -81,7 +81,7 @@ return {
       local seen = {}
 
       local function add_include(path)
-        if not vim.startswith(path, '/') then
+        if not vim.fs.isabs(path) then
           path = vim.fs.normalize(root_dir .. '/' .. path)
         end
         if path_exists(path) then
@@ -188,6 +188,7 @@ return {
     local tools_to_install = vim.list_extend(vim.deepcopy(ensure_installed), {
       'black',
       'clang-format',
+      'codelldb',
       'isort',
       'stylua',
     })

@@ -1,12 +1,12 @@
 return {
-  "nvim-pack/nvim-spectre",
-  dependencies = { "nvim-lua/plenary.nvim" },
+  'nvim-pack/nvim-spectre',
+  dependencies = { 'nvim-lua/plenary.nvim' },
   config = function()
-    require('spectre').setup({
+    require('spectre').setup {
       result_padding = ' ',
       default = {
-        replace = { cmd = 'sed' }
-      }
-    })
-  end
+        replace = { cmd = 'sed' },
+      },
+    }
+  end,
 }

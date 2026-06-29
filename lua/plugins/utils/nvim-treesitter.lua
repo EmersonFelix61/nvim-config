@@ -1,7 +1,7 @@
 return { -- Highlight, edit, and navigate code
   {
     'nvim-treesitter/nvim-treesitter',
-    branch = 'master',
+    branch = 'master', -- Legacy branch compatible with the Neovim 0.11 target.
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`

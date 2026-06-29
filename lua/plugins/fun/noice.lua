@@ -1,14 +1,14 @@
 return {
-	{
-		"folke/noice.nvim",
+  {
+    'folke/noice.nvim',
 
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"rcarriga/nvim-notify",
-		},
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify',
+    },
 
-		config = function()
-			require("noice").setup({})
-		end,
-	},
+    config = function()
+      require('noice').setup {}
+    end,
+  },
 }
