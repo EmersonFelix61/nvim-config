@@ -1,12 +1,7 @@
 -- NOTE: Run `:checkhealth` to check if your system is set-up properly
 -- Not every warning is a 'must-fix' in `:checkhealth`
 
--- Set <space> as the leader key
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-
---  NOTE: set true if a Nerd Font is installed
-vim.g.have_nerd_font = true
+require 'config.options'
 
 local i18n = require 'config.i18n'
 i18n.setup_commands()
@@ -23,7 +18,7 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  --	Basic Utitlity Plugins:
+  -- Basic utility plugins
   { import = 'plugins.utils.autopairs' },
   { import = 'plugins.utils.toggleterm' },
   { import = 'plugins.utils.gitsigns' },
@@ -38,39 +33,35 @@ require('lazy').setup({
   { import = 'plugins.utils.diffview' },
   { import = 'plugins.utils.neogit' },
 
-  --	42 School Related Plugins:
-  { import = 'plugins.42.42-norminette' },
-  { import = 'plugins.42.42-header' },
+  -- 42 School related plugins
+  { import = 'plugins.42.norminette' },
+  { import = 'plugins.42.header' },
 
-  --	Theme Related Plugins:
-  { import = 'plugins.themes.tokyo' },
+  -- Theme-related plugins
+  { import = 'plugins.themes.tokyonight' },
   { import = 'plugins.themes.switcheroo' },
   { import = 'plugins.themes.themery' },
-  { import = 'plugins.themes.theme-stash' },
+  { import = 'plugins.themes.catppuccin' },
+  { import = 'plugins.themes.available' },
 
-  -- Novos Temas (Adicione os arquivos correspondentes na pasta plugins/themes/)
-  { 'rebelot/kanagawa.nvim' },
-  { 'Yazeed1s/oh-lucy.nvim' },
-  { 'scottmckendry/cyberdream.nvim' },
-  { 'cpea2506/one_monokai.nvim' },
-  { 'rose-pine/neovim', name = 'rose-pine' },
-  { 'maxmx03/fluoromachine.nvim' },
+  -- Viadagens
+  { import = 'plugins.fun.barbar' },
+  { import = 'plugins.fun.cellular' },
+  { import = 'plugins.fun.drop' },
+  { import = 'plugins.fun.noice' },
 
-  --	Viadagens:
-  { import = 'plugins.fun' },
-
-  --	Dashboard Plugins:
+  -- Dashboard plugins
   { import = 'plugins.dashboard.snacks' },
   { import = 'plugins.dashboard.persistence' },
 
-  --	LSP Related Plugins:
-  { import = 'plugins.LSP.lazydev' },
-  { import = 'plugins.LSP.nvim-lspconfig' },
-  { import = 'plugins.LSP.nvim-cmp_autocompletion' },
-  { import = 'plugins.LSP.conform_autoformat' },
+  -- LSP-related plugins
+  { import = 'plugins.lsp.lazydev' },
+  { import = 'plugins.lsp.lspconfig' },
+  { import = 'plugins.lsp.completion' },
+  { import = 'plugins.lsp.formatting' },
 
-  -- Debugging:
-  { import = 'plugins.debug.nvim-dap' },
+  -- Debugging
+  { import = 'plugins.debug.dap' },
 }, {
   ui = {
     icons = vim.g.have_nerd_font and {} or {
@@ -91,4 +82,6 @@ require('lazy').setup({
   },
 })
 
-require 'vim-options'
+require 'config.highlights'
+require 'config.autocmds'
+require 'config.keymaps'

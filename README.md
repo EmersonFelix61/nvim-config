@@ -14,10 +14,11 @@ Neovim 0.12 ainda não é o alvo desta configuração porque a branch `master` d
 
 ## Estrutura
 
-- `init.lua`: inicialização do lazy.nvim e importação dos módulos.
-- `lua/vim-options.lua`: opções e atalhos globais.
-- `lua/plugins/`: configurações de plugins por categoria.
-- `lua/kickoff42/health.lua`: healthcheck nativo da configuração.
+- `init.lua`: inicialização do lazy.nvim e lista explícita dos módulos ativos.
+- `lua/config/`: opções, atalhos, autocmds, highlights e tradução da configuração.
+- `lua/plugins/`: configurações de plugins ativos, organizadas por categoria.
+- `lua/plugins/themes/presets/`: presets pessoais mantidos como referência e não carregados automaticamente.
+- `lua/kickoff42/`: healthcheck e lógica própria do projeto, incluindo a integração do clangd com projetos da 42.
 - `kickstart_files/`: documentação de referência do kickstart.nvim.
 - `install.sh`: instala ferramentas locais; não clona a configuração.
 - `install-linux.sh`: instala a configuração completa no Linux, com backup.
@@ -108,11 +109,11 @@ Comandos úteis:
 - `<space>sk` para pesquisar os atalhos;
 - `:Idioma toggle` para alternar as descrições entre PT-BR e inglês.
 
-Configure `user` e `mail` em `lua/plugins/42/42-header.lua` se esta configuração for usada por outra pessoa. Se não houver Nerd Font, altere `vim.g.have_nerd_font` para `false` em `init.lua`.
+Configure `user` e `mail` em `lua/plugins/42/header.lua` se esta configuração for usada por outra pessoa. Se não houver Nerd Font, altere `vim.g.have_nerd_font` para `false` em `lua/config/options.lua`.
 
 ## Temas e arquivos experimentais
 
-Tokyonight continua sendo o tema padrão. Alguns arquivos em `lua/plugins/themes/` são presets pessoais mantidos como referência e não são importados automaticamente; somente os módulos declarados em `init.lua` fazem parte da configuração ativa.
+Tokyonight continua sendo o tema padrão. Os arquivos em `lua/plugins/themes/presets/` são presets pessoais mantidos como referência e não são importados automaticamente; somente os módulos declarados em `init.lua` fazem parte da configuração ativa.
 
 ## Limitações conhecidas
 

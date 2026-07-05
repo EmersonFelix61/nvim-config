@@ -290,8 +290,8 @@ function M.which_key_spec()
 end
 
 function M.apply_runtime()
-  local vim_options = vim.fn.stdpath 'config' .. '/lua/vim-options.lua'
-  dofile(vim_options)
+  local keymaps = vim.fn.stdpath 'config' .. '/lua/config/keymaps.lua'
+  dofile(keymaps)
 
   local ok, which_key = pcall(require, 'which-key')
   if ok then
