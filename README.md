@@ -51,10 +51,10 @@ O `codelldb` usado pelo DAP é solicitado automaticamente ao Mason. Se ele não 
 
 ## Instalação Linux completa
 
-O instalador Linux clona a branch `configs-casa`, move uma configuração existente para um diretório `nvim.backup.<timestamp>` e chama o instalador de ferramentas com versões compatíveis.
+O instalador Linux clona a branch `main`, move uma configuração existente para um diretório `nvim.backup.<timestamp>` e chama o instalador de ferramentas com versões compatíveis.
 
 ```sh
-git clone --branch configs-casa https://github.com/EmersonFelix61/nvim-config /tmp/nvim-config
+git clone --branch main https://github.com/EmersonFelix61/nvim-config /tmp/nvim-config
 sh /tmp/nvim-config/install-linux.sh
 ```
 
@@ -65,7 +65,7 @@ Ele pode sugerir a instalação de dependências por `apt`, `dnf`, `pacman` ou `
 Clone primeiro a configuração no local esperado pelo Neovim:
 
 ```sh
-git clone --branch configs-casa https://github.com/EmersonFelix61/nvim-config "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
+git clone --branch main https://github.com/EmersonFelix61/nvim-config "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 cd "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 ./install.sh
 ```
@@ -87,7 +87,7 @@ Todos os prompts `[y/N]` usam “não” como padrão. Se uma ferramenta obrigat
 Execute o script em PowerShell a partir de um clone temporário:
 
 ```powershell
-git clone --branch configs-casa https://github.com/EmersonFelix61/nvim-config "$env:TEMP\nvim-config"
+git clone --branch main https://github.com/EmersonFelix61/nvim-config "$env:TEMP\nvim-config"
 & "$env:TEMP\nvim-config\install-windows.ps1"
 ```
 

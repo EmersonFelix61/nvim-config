@@ -3,7 +3,7 @@
 set -eu
 
 REPOSITORY_URL='https://github.com/EmersonFelix61/nvim-config'
-REPOSITORY_BRANCH='configs-casa'
+REPOSITORY_BRANCH='main'
 CONFIG_HOME=${XDG_CONFIG_HOME:-${HOME:?HOME is not set}/.config}
 CONFIG_DIR=$CONFIG_HOME/nvim
 STAGING_DIR=$CONFIG_DIR.installing.$$

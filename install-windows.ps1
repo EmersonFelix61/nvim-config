@@ -2,7 +2,7 @@ $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
 
 $RepositoryUrl = "https://github.com/EmersonFelix61/nvim-config"
-$RepositoryBranch = "configs-casa"
+$RepositoryBranch = "main"
 $NeovimVersion = "0.11.5"
 
 if ([string]::IsNullOrWhiteSpace($env:LOCALAPPDATA)) {
