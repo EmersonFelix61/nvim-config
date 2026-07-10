@@ -19,7 +19,7 @@ return { -- Fuzzy Finder (files, lsp, etc)
     { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
   },
   config = function()
-    local path_separator = package.config:sub(3, 3)
+    local path_separator = vim.fn.has 'win32' == 1 and ';' or ':'
     local local_bin = vim.fs.joinpath(vim.fn.expand '$HOME', '.local', 'bin')
     local path_entries = vim.split(vim.env.PATH or '', path_separator, { plain = true })
     if vim.fn.isdirectory(local_bin) == 1 and not vim.tbl_contains(path_entries, local_bin) then
