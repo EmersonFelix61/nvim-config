@@ -3,9 +3,9 @@ return {
     'folke/drop.nvim',
     config = function()
       require('drop').setup {
-        theme = 'snow',
+        theme = 'pirate',
         max = 100,
-        interval = 30,
+        interval = 75,
       }
     end,
   },
