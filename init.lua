@@ -35,6 +35,7 @@ require('lazy').setup({
 
   -- 42 School related plugins
   { import = 'plugins.42.norminette' },
+  { import = 'plugins.42.flake8' },
   { import = 'plugins.42.header' },
 
   -- Theme-related plugins

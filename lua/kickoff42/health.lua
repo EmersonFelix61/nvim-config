@@ -14,6 +14,13 @@ local function report_executable(name, available)
   end
 end
 
+local function mason_executable(name)
+  local executable_name = package.config:sub(1, 1) == '\\' and name .. '.cmd' or name
+  local executable_path = vim.fs.joinpath(vim.fn.stdpath 'data', 'mason', 'bin', executable_name)
+
+  return vim.fn.executable(executable_path) == 1
+end
+
 local function check_version()
   local version = vim.version()
   local version_string = tostring(version)
@@ -34,9 +41,8 @@ local function check_external_requirements()
   report_executable('C compiler', executable 'cc' or executable 'gcc' or executable 'clang' or executable 'cl')
   report_executable('c_formatter_42', executable 'c_formatter_42')
   report_executable('norminette', executable 'norminette')
-
-  local mason_codelldb = vim.fs.joinpath(vim.fn.stdpath 'data', 'mason', 'bin', package.config:sub(1, 1) == '\\' and 'codelldb.cmd' or 'codelldb')
-  report_executable('codelldb', executable 'codelldb' or vim.fn.executable(mason_codelldb) == 1)
+  report_executable('flake8', executable 'flake8' or mason_executable 'flake8')
+  report_executable('codelldb', executable 'codelldb' or mason_executable 'codelldb')
 end
 
 function M.check()

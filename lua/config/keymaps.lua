@@ -82,6 +82,7 @@ local disabled_keys = {
   '<PageDown>',
 }
 
+<<<<<<< HEAD
 for _, key in ipairs(disabled_keys) do
   vim.keymap.set({ 'n', 'i', 'v', 'x' }, key, function()
     vim.notify('USA VIM MOTIONS, ANIMAL', vim.log.levels.WARN)
@@ -90,3 +91,13 @@ for _, key in ipairs(disabled_keys) do
     desc = 'Vim motions training',
   })
 end
+=======
+-- for _, key in ipairs(disabled_keys) do
+--   vim.keymap.set({ 'n', 'i', 'v', 'x' }, key, function()
+--     vim.notify('USA VIM MOTIONS, ANIMAL', vim.log.levels.WARN)
+--   end, {
+--     silent = true,
+--     desc = 'Vim motions training',
+--   })
+-- end
+>>>>>>> f900f3c (update toggleterm and flake8)

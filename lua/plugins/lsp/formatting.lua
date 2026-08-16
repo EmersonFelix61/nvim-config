@@ -2,7 +2,7 @@ local i18n = require 'config.i18n'
 
 local function lsp_format_mode(bufnr)
   local filetype = vim.bo[bufnr].filetype
-  if filetype == 'c' or filetype == 'cpp' then
+  if filetype == 'c' or filetype == 'cpp' or filetype == 'python' then
     return 'never'
   end
   return 'fallback'
@@ -36,7 +36,7 @@ return { -- Autoformat
       c = { 'c_formatter_42' },
       cpp = { 'clang-format' },
       lua = { 'stylua' },
-      python = { 'isort', 'black' },
+      --python = { 'isort','black' },
 
       -- You can use 'stop_after_first' to run the first available formatter from the list
       -- javascript = { "prettierd", "prettier", stop_after_first = true },

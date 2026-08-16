@@ -94,6 +94,7 @@ return {
       'black',
       'clang-format',
       'codelldb',
+      'flake8',
       'isort',
       'stylua',
     })
