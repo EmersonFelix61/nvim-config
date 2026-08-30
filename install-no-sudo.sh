@@ -299,7 +299,7 @@ validate_config() {
   info 'Boot validado sem erros.'
 }
 
-info 'Instalador de ferramentas locais para kickoff42.nvim'
+info 'Instalador no-sudo de ferramentas locais para kickoff42.nvim'
 info "Este script não clona a configuração; ele instala ferramentas em $HOME/.local."
 info "Versão alvo do Neovim: $NVIM_VERSION"
 

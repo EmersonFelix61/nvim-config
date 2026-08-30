@@ -71,22 +71,22 @@ end, { desc = i18n.t 'map.which_key_z' })
 
 vim.keymap.set('n', '<leader>li', '<cmd>Idioma toggle<CR>', { desc = i18n.t 'lang.toggle' })
 
-local disabled_keys = {
-  '<Up>',
-  '<Down>',
-  '<Left>',
-  '<Right>',
-  '<Home>',
-  '<End>',
-  '<PageUp>',
-  '<PageDown>',
-}
+-- local disabled_keys = {
+--   '<Up>',
+--   '<Down>',
+--   '<Left>',
+--   '<Right>',
+--   '<Home>',
+--   '<End>',
+--   '<PageUp>',
+--   '<PageDown>',
+-- }
 
-for _, key in ipairs(disabled_keys) do
-  vim.keymap.set({ 'n', 'i', 'v', 'x' }, key, function()
-    vim.notify('USA VIM MOTIONS, ANIMAL', vim.log.levels.WARN)
-  end, {
-    silent = true,
-    desc = 'Vim motions training',
-  })
-end
+-- for _, key in ipairs(disabled_keys) do
+--   vim.keymap.set({ 'n', 'i', 'v', 'x' }, key, function()
+--     vim.notify('USA VIM MOTIONS, ANIMAL', vim.log.levels.WARN)
+--   end, {
+--     silent = true,
+--     desc = 'Vim motions training',
+--   })
+-- end

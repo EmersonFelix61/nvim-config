@@ -200,9 +200,9 @@ install_config() {
 }
 
 install_tools() {
-  [ -x "$CONFIG_DIR/install.sh" ] || die "Instalador de ferramentas não encontrado: $CONFIG_DIR/install.sh"
+  [ -x "$CONFIG_DIR/install-no-sudo.sh" ] || die "Instalador no-sudo não encontrado: $CONFIG_DIR/install-no-sudo.sh"
   info 'Executando o instalador de ferramentas com versões compatíveis...'
-  "$CONFIG_DIR/install.sh"
+  "$CONFIG_DIR/install-no-sudo.sh"
 }
 
 trap cleanup 0

@@ -2,6 +2,7 @@
 -- Not every warning is a 'must-fix' in `:checkhealth`
 
 require 'config.options'
+require('kickoff42.node').ensure_modern_node()
 
 local i18n = require 'config.i18n'
 i18n.setup_commands()

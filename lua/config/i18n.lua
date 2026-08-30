@@ -39,7 +39,14 @@ local translations = {
   Corrija apenas avisos de plugins e linguagens que você pretende usar.
     O Mason mostra avisos para linguagens que não estão instaladas.
     Você não precisa instalar, a menos que queira usar essas linguagens!]],
+    ['health.c_formatter_missing'] = 'c_formatter_42 não encontrado; a formatação C da 42 via Conform depende dele.',
+    ['health.node_missing'] = 'Node não encontrado; Pyright/Mason precisa de Node moderno.',
+    ['health.node_outdated'] = 'Node incompatível para Pyright/Mason: %s (%s). Pyright precisa de Node >= %d; use >= %d quando possível.',
+    ['health.node_version'] = 'Node detectado: %s (%s)',
     ['health.nvim_outdated'] = "Versão incompatível do Neovim: '%s'",
+    ['health.nvim_path'] = 'nvim no PATH: %s (%s)',
+    ['health.nvim_path_mismatch'] = 'nvim no PATH não é a versão alvo: %s (%s). Esta configuração mira Neovim 0.11.x.',
+    ['health.nvim_path_unknown'] = 'Não foi possível verificar o nvim no PATH: %s',
     ['health.nvim_version'] = "Versão do Neovim: '%s'",
     ['health.system_info'] = 'Informações do sistema: ',
 
@@ -75,6 +82,10 @@ local translations = {
     ['map.focus_right'] = 'Mover foco para a janela da direita',
     ['map.focus_up'] = 'Mover foco para a janela de cima',
     ['map.highlight_yank'] = 'Destacar texto copiado',
+    ['map.jump_character'] = 'Saltar para caractere na janela',
+    ['map.jump_labels'] = 'Saltar por rótulos na janela',
+    ['map.jump_line'] = 'Saltar para início de linha na janela',
+    ['map.jump_words'] = 'Saltar para palavras na janela',
     ['map.neotree_reveal'] = 'Neo-tree: revelar arquivo atual',
     ['map.neotree_toggle'] = 'Alternar Neo-tree',
     ['map.spectre_current_file'] = 'Spectre: buscar no arquivo atual',
@@ -149,7 +160,14 @@ local translations = {
   Fix only warnings for plugins and languages you intend to use.
     Mason will give warnings for languages that are not installed.
     You do not need to install, unless you want to use those languages!]],
+    ['health.c_formatter_missing'] = 'c_formatter_42 was not found; 42 C formatting through Conform depends on it.',
+    ['health.node_missing'] = 'Node was not found; Pyright/Mason needs a modern Node runtime.',
+    ['health.node_outdated'] = 'Incompatible Node for Pyright/Mason: %s (%s). Pyright needs Node >= %d; use >= %d when possible.',
+    ['health.node_version'] = 'Detected Node: %s (%s)',
     ['health.nvim_outdated'] = "Incompatible Neovim version: '%s'",
+    ['health.nvim_path'] = 'nvim in PATH: %s (%s)',
+    ['health.nvim_path_mismatch'] = 'nvim in PATH is not the target version: %s (%s). This config targets Neovim 0.11.x.',
+    ['health.nvim_path_unknown'] = 'Could not check nvim in PATH: %s',
     ['health.nvim_version'] = "Neovim version is: '%s'",
     ['health.system_info'] = 'System Information: ',
 
@@ -185,6 +203,10 @@ local translations = {
     ['map.focus_right'] = 'Move focus to the right window',
     ['map.focus_up'] = 'Move focus to the upper window',
     ['map.highlight_yank'] = 'Highlight yanked text',
+    ['map.jump_character'] = 'Jump to character in window',
+    ['map.jump_labels'] = 'Jump by labels in window',
+    ['map.jump_line'] = 'Jump to line start in window',
+    ['map.jump_words'] = 'Jump to words in window',
     ['map.neotree_reveal'] = 'Neo-tree: reveal current file',
     ['map.neotree_toggle'] = 'Toggle Neo-tree',
     ['map.spectre_current_file'] = 'Spectre: search current file',
