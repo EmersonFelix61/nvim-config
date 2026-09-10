@@ -41,11 +41,11 @@ Automatic completion is disabled. Use `<C-Space>`.
 
 | Plugin | What it does | When to use it | Role | Config file |
 | --- | --- | --- | --- | --- |
-| `stevearc/conform.nvim` | Formatting | `<leader>f` or save when configured | Essential | `lua/plugins/lsp/formatting.lua` |
+| `stevearc/conform.nvim` | Manual formatting | `<leader>f` | Essential | `lua/plugins/lsp/formatting.lua` |
 | `mfussenegger/nvim-lint` | Diagnostics from external linters | Visual Flake8 diagnostics for Python | Complementary | `lua/plugins/42/flake8.lua`, `lua/kickoff42/flake8.lua` |
 | `MrSloth-dev/42-NorminetteNvim` | Norminette integration | 42 C projects | Essential for 42 | `lua/plugins/42/norminette.lua` |
 
-Tools ensured by Mason: `black`, `isort`, `flake8`, `stylua`, `clang-format`, `codelldb`. Found issue: `black` and `isort` are installed, but Python is not wired to Conform in the current config.
+Tools ensured by Mason: `black`, `isort`, `flake8`, `stylua`, `clang-format`, `codelldb`. Formatting is manual with `<leader>f`; saving does not format. Python runs isort (Black profile) followed by Black through Conform.
 
 ## Debug
 

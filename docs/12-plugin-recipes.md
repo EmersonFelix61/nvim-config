@@ -41,7 +41,7 @@ For broader symbol search, use `<leader>ws`.
 5. Use `<leader>ca` if the LSP offers an action.
 6. Toggle Flake8 with `<leader>8` when you want additional visual style diagnostics.
 
-Found issue: Black/isort are installed but not active through Conform for Python.
+Pressing `<leader>f` runs isort (Black profile) followed by Black through Conform. Saving does not format, for Python or any other filetype.
 
 ## I Want to Fix Norminette Issues
 

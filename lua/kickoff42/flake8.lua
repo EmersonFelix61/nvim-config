@@ -2,6 +2,7 @@ local M = {}
 
 local autocmd_group = vim.api.nvim_create_augroup('kickoff42-flake8', { clear = true })
 local flake8_autocheck = false
+local check_generation = 0
 
 local function mason_flake8_path()
   local executable_name = package.config:sub(1, 1) == '\\' and 'flake8.cmd' or 'flake8'
@@ -70,7 +71,20 @@ function M.check()
 
   configure_flake8_command(lint, command)
 
-  local lint_ok, err = pcall(lint.try_lint, 'flake8')
+  local generation = check_generation
+  local lint_ok, err = pcall(lint.try_lint, 'flake8', {
+    wrap_linter = function(linter)
+      local parse = linter.parser
+      linter.parser = function(...)
+        -- A check may finish after Flake8 was disabled and its diagnostics cleared.
+        if generation ~= check_generation then
+          return {}
+        end
+        return parse(...)
+      end
+      return linter
+    end,
+  })
   if not lint_ok then
     vim.notify(err, vim.log.levels.WARN)
   end
@@ -85,6 +99,7 @@ end
 
 function M.disable()
   flake8_autocheck = false
+  check_generation = check_generation + 1
   vim.notify 'Flake8AutoCheck disable'
 
   local namespace = flake8_namespace()

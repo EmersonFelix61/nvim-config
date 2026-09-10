@@ -66,7 +66,6 @@ return {
       capabilities = vim.tbl_deep_extend('force', capabilities, cmp_lsp.default_capabilities())
     end
 
-    local lspconfig = require 'lspconfig'
     local servers = {
       clangd = clangd.server_config(),
       pyright = {
@@ -74,7 +73,7 @@ return {
           python = {
             analysis = {
               autoSearchPaths = true,
-              diagnosticMode = 'workspace',
+              diagnosticMode = 'openFilesOnly',
               typeCheckingMode = 'basic',
               useLibraryCodeForTypes = true,
             },
@@ -82,11 +81,29 @@ return {
         },
       },
       ruff = {
+        root_dir = function(bufnr, on_dir)
+          -- Ruff needs a workspace to resolve editor settings for standalone files.
+          on_dir(vim.fs.root(bufnr, vim.lsp.config.ruff.root_markers) or vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)))
+        end,
+        init_options = {
+          settings = {
+            -- Keep study defaults stable across Ruff releases; projects can override them.
+            configurationPreference = 'filesystemFirst',
+            configuration = { lint = { select = { 'E4', 'E7', 'E9', 'F' } } },
+            logLevel = 'warn',
+          },
+        },
         on_attach = function(client)
           client.server_capabilities.hoverProvider = false
         end,
       },
-      lua_ls = { settings = { Lua = { diagnostics = { disable = { 'missing-fields' } } } } },
+      lua_ls = {
+        root_dir = function(bufnr, on_dir)
+          -- Avoid LuaLS's nonexistent /<default workspace root> for standalone files.
+          on_dir(vim.fs.root(bufnr, vim.lsp.config.lua_ls.root_markers) or vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)))
+        end,
+        settings = { Lua = { diagnostics = { disable = { 'missing-fields' } } } },
+      },
     }
 
     local ensure_installed = vim.tbl_keys(servers or {})
@@ -115,7 +132,7 @@ return {
         function(server_name)
           local server = servers[server_name] or {}
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          lspconfig[server_name].setup(server)
+          require('lspconfig')[server_name].setup(server)
         end,
       }
     end

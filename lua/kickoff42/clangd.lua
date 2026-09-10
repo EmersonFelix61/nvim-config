@@ -81,14 +81,15 @@ function M.server_config()
     cmd = {
       'clangd',
       '--background-index',
+      '--log=error', -- clangd logs normal protocol traffic to stderr, inflating lsp.log.
       '--clang-tidy',
       '--completion-style=detailed',
       '--header-insertion=iwyu',
     },
     root_dir = M.root_dir,
     root_markers = { 'compile_commands.json', 'compile_flags.txt', '.clangd', 'Makefile', '.git' },
-    before_init = function(_, config)
-      config.init_options = vim.tbl_deep_extend('force', config.init_options or {}, {
+    before_init = function(params, config)
+      params.initializationOptions = vim.tbl_deep_extend('force', config.init_options or {}, {
         fallbackFlags = M.fallback_flags(config.root_dir or vim.uv.cwd()),
       })
     end,

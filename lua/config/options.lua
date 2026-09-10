@@ -35,3 +35,13 @@ vim.opt.splitbelow = true
 vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
+
+vim.diagnostic.config {
+  virtual_text = false,
+  virtual_lines = false,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = { border = 'rounded', source = 'if_many' },
+}

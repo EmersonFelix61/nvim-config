@@ -278,9 +278,9 @@ validate_config() {
   verbose_file=$WORK_DIR/nvim-verbose.log
   mkdir -p "$state_home" "$cache_home"
 
-  info 'Instalando/sincronizando plugins conforme o lazy-lock.json...'
+  info 'Instalando/restaurando plugins conforme o lazy-lock.json...'
   if ! NVIM_LOG_FILE=$WORK_DIR/nvim.log XDG_STATE_HOME=$state_home XDG_CACHE_HOME=$cache_home \
-    nvim --headless -i NONE -V1"$verbose_file" -u "$CONFIG_DIR/init.lua" '+Lazy! sync' +qa >"$output_file" 2>&1; then
+    nvim --headless -i NONE -V1"$verbose_file" -u "$CONFIG_DIR/init.lua" '+Lazy! restore' +qa >"$output_file" 2>&1; then
     sed -n '1,200p' "$output_file" >&2
     die 'A sincronização dos plugins falhou.'
   fi

@@ -41,17 +41,6 @@ local function path_entries()
   return vim.split(vim.env.PATH or '', path_separator(), { plain = true, trimempty = true })
 end
 
-local function contains_path(path)
-  path = vim.fs.normalize(path)
-  for _, entry in ipairs(path_entries()) do
-    if vim.fs.normalize(entry) == path then
-      return true
-    end
-  end
-
-  return false
-end
-
 function M.info(path)
   path = path or vim.fn.exepath 'node'
   if path == '' then
@@ -124,9 +113,13 @@ function M.ensure_modern_node()
   end
 
   local bin_dir = vim.fn.fnamemodify(info.path, ':h')
-  if not contains_path(bin_dir) then
-    vim.env.PATH = bin_dir .. path_separator() .. (vim.env.PATH or '')
+  local entries = { bin_dir }
+  for _, entry in ipairs(path_entries()) do
+    if vim.fs.normalize(entry) ~= vim.fs.normalize(bin_dir) then
+      table.insert(entries, entry)
+    end
   end
+  vim.env.PATH = table.concat(entries, path_separator())
 
   return info
 end

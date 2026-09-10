@@ -178,8 +178,8 @@ function Test-NeovimBoot {
         $env:XDG_STATE_HOME = $stateHome
         $env:XDG_CACHE_HOME = $cacheHome
 
-        Write-Info "Instalando/sincronizando plugins conforme o lazy-lock.json..."
-        $syncOutput = @(& nvim --headless -i NONE ("-V1" + $verboseLog) -u (Join-Path $ConfigDir "init.lua") '+Lazy! sync' +qa 2>&1)
+        Write-Info "Instalando/restaurando plugins conforme o lazy-lock.json..."
+        $syncOutput = @(& nvim --headless -i NONE ("-V1" + $verboseLog) -u (Join-Path $ConfigDir "init.lua") '+Lazy! restore' +qa 2>&1)
         $syncExitCode = $LASTEXITCODE
         $syncOutput | Set-Content -LiteralPath $outputFile
         if ($syncExitCode -ne 0 -or ($syncOutput -join "`n") -match 'Error detected|Error in .*init\.lua|\bE\d+:|stack traceback') {

@@ -8,9 +8,8 @@ local function lsp_format_mode(bufnr)
   return 'fallback'
 end
 
-return { -- Autoformat
+return {
   'stevearc/conform.nvim',
-  event = { 'BufWritePre' },
   cmd = { 'ConformInfo' },
   keys = {
     {
@@ -26,22 +25,21 @@ return { -- Autoformat
     },
   },
   opts = {
-    format_on_save = function(bufnr)
-      return {
-        timeout_ms = 2000,
-        lsp_format = lsp_format_mode(bufnr),
-      }
-    end,
     formatters_by_ft = {
       c = { 'c_formatter_42' },
       cpp = { 'clang-format' },
       lua = { 'stylua' },
-      --python = { 'isort','black' },
+      python = { 'isort', 'black' },
 
       -- You can use 'stop_after_first' to run the first available formatter from the list
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
     },
     formatters = {
+      isort = {
+        -- isort 8 skips stdin when --filename points to a not-yet-saved buffer.
+        stdin = false,
+        args = { '--profile', 'black', '$FILENAME' },
+      },
       c_formatter_42 = {
         command = 'c_formatter_42',
         stdin = true,

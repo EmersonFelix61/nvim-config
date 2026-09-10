@@ -45,7 +45,9 @@ cd "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 ./install-no-sudo.sh
 ```
 
-`install-no-sudo.sh` installs local tools under `~/.local`, syncs plugins, and validates boot. It does not clone, move, or replace the config.
+`install-no-sudo.sh` installs local tools under `~/.local`, restores plugin revisions from `lazy-lock.json`, and validates boot. It does not clone, move, or replace the config.
+
+The Linux and Windows installers use `Lazy restore`, not `Lazy sync`: missing plugins are installed by Lazy at startup using the lockfile, and existing plugins are restored to the locked revisions. Installation does not intentionally update plugins to newer revisions or clean unrelated plugin directories.
 
 ## Windows Installation
 
